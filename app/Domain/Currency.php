@@ -8,7 +8,7 @@ class Currency
     private $rate;
     private $date;
 
-    public function __construct($id, $name, $rate, $date)
+    public function __construct($id, $name, $rate, \DateTimeImmutable $date)
     {
         $this->setId($id);
         $this->setName($name);
@@ -26,7 +26,7 @@ class Currency
     public function setRate($rate) { $this->rate = $rate; }
 
     public function getDate() { return $this->date; }
-    public function setDate($date) { $this->date = new \DateTimeImmutable($date); }
+    public function setDate($date) { $this->date = $date; }
     public function getDateFormated($format = "d.m.Y") { return $this->date->format($format); }
 }
 

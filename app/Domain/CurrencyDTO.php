@@ -13,11 +13,13 @@ class CurrencyDTO
      */
     static function fromXml($xml)
     {
+        $date = \DateTimeImmutable::createFromFormat("d.m.y", (string)$xml->pubDate);
+        $date = $date->setTime(0, 0, 0);
         $currency = new Currency(
             null,
             (string)$xml->title,
             (float)$xml->description,
-            (string)$xml->pubDate
+            $date
         );
 
         return $currency;

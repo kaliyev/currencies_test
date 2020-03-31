@@ -14,4 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/currencies', 'CurrenciesController@index');
-Route::get('/currencies/{id}', 'CurrenciesController@view');
+Route::get('/currencies/{name}', 'CurrenciesController@view');

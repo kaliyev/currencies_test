@@ -34,6 +34,27 @@ class CurrencyRepository
     }
 
     /**
+     * Поиск валют на указанную дату
+     */
+    public function findCurrenciesByDate($date)
+    {
+        $formated_date = date("Y-m-d", strtotime($date));
+        return $this->model->where('date', $formated_date)->get();
+    }
+
+    /**
+     * Поиск валюты на дату
+     */
+    public function findCurrencyByDate($name, $date)
+    {
+        $formated_date = date("Y-m-d", strtotime($date));
+        return $this->model->where([
+            ['name', $name],
+            ['date', $formated_date]
+        ])->first();
+    }
+
+    /**
      * Запись в базу новой валюты
      */
     public function create(Currency $currency)

@@ -18,11 +18,16 @@ class CurrencyService
     }
 
     /**
-     * Поиск валюты в базе
+     * Поиск валют
      */
-    public function findCurrency(Currency $currency)
+    public function getAllByDate($date)
     {
-        return $this->currency_repository->findByName($currency->getName());
+        return $this->currency_repository->findCurrenciesByDate($date);
+    }
+
+    public function getCurrencyByDate($name, $date)
+    {
+        return $this->currency_repository->findCurrencyByDate($name, $date);
     }
 
     /**
@@ -30,7 +35,7 @@ class CurrencyService
      */
     public function saveCurrency(Currency $currency)
     {
-        $db_currency = $this->findCurrency($currency);
+        $db_currency = $this->currency_repository->findCurrencyByDate($currency->getName(), $currency->getDateFormated());
         if ($db_currency !== null) {
             $this->currency_repository->update($currency, $db_currency);
         } else {
