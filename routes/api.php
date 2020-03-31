@@ -13,5 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/currencies', 'CurrenciesController@index');
-Route::get('/currencies/{name}', 'CurrenciesController@view');
+Route::middleware('bearer')->group(function(){
+    Route::get('/currencies', 'CurrenciesController@index');
+    Route::get('/currencies/{name}', 'CurrenciesController@view');
+});
